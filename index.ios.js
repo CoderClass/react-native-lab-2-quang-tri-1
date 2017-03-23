@@ -9,25 +9,29 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
+
+import LoginScene from './githubapp/scenes/login-scene';
+
+const defaultRoute = {
+  title: 'Sence 1',
+  component: LoginScene
+}
 
 export default class githubrepo extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <Navigator
+        initialRoute={ defaultRoute }
+        renderScene={ this._renderScene }
+      />
     );
+  }
+
+  _renderScene(route, navigator) {
+    return <route.component route={ route } navigator={ navigator } />;
   }
 }
 
