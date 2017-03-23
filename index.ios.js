@@ -39,7 +39,7 @@ export default class githubrepo extends Component {
   }
 
   _renderScene(route, navigator) {
-    return <route.component route={ route } navigator={ navigator } />;
+    return <route.component route={ route } navigator={ navigator } facebookResult={ route.facebookResult } />;
   }
 }
 

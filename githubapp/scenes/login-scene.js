@@ -59,7 +59,7 @@ class LoginScene extends Component {
     const infoRequest = new GraphRequest(
       '/me',
       null,
-      this._responseInfoCallback,
+      this._responseInfoCallback.bind(this),
     );
     // Start the graph request.
     new GraphRequestManager().addRequest(infoRequest).start();
@@ -69,7 +69,8 @@ class LoginScene extends Component {
     if (error) {
       alert('Error fetching data: ' + error.toString());
     } else {
-      alert('Success fetching data: ' + JSON.stringify(result.toString()));
+      // alert('Success fetching data: ' + JSON.stringify(result));
+      this._goToHomeScence(result);
     }
   }
 
@@ -77,10 +78,11 @@ class LoginScene extends Component {
     this._goToHomeScence();
   }
 
-  _goToHomeScence() {
+  _goToHomeScence(facebookResult) {
     this.props.navigator.push({
       title: 'Home scene',
-      component: HomeScene
+      component: HomeScene,
+      facebookResult: facebookResult
     });
   }
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   Text, View, TouchableOpacity,
-  ListView
+  ListView,
+  TextInput
 } from 'react-native';
 import SettingScene from './setting-scene';
 
@@ -25,6 +26,8 @@ class HomeScene extends Component {
 
     return (
       <View style={{marginTop: 100}}>
+        <TextInput />
+
         <TouchableOpacity
           onPress={this.onGoToSettingBtnPress.bind(this)}
         >
