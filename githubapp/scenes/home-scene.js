@@ -1,11 +1,28 @@
 import React, { Component } from 'react';
 import {
-  Text, View, TouchableOpacity
+  Text, View, TouchableOpacity,
+  ListView
 } from 'react-native';
 import SettingScene from './setting-scene';
 
 class HomeScene extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dataSource: {},
+      loading: true
+    }
+  }
+
   render() {
+    if (this.state.loading === true) {
+      return <Text>Loading...</Text>
+    }
+
+    let ds = new ListView.DataSource({rowHasChanged: ()=>{}});
+    let dataSource = ds.cloneWithRows(this.state.dataSource);
+
     return (
       <View style={{marginTop: 100}}>
         <TouchableOpacity
@@ -16,11 +33,23 @@ class HomeScene extends Component {
           </Text>
         </TouchableOpacity>
 
-        <Text>
-          This is HomeScene
-        </Text>
+        <ListView
+          dataSource={dataSource}
+          renderRow={(rowData)=>{ return <Text>{ rowData.id }</Text> }}
+        ></ListView>
       </View>
     );
+  }
+
+  componentWillMount() {
+    fetch('https://api.github.com/search/repositories?q=topic:ruby+topic:rails')
+      .then(response => response.json())
+      .then(responseJson => {
+        this.setState({
+          dataSource: responseJson.items,
+          loading: false
+        });
+      })
   }
 
   onGoToSettingBtnPress(event) {

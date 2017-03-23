@@ -17,12 +17,13 @@ import { Provider } from 'react-redux';
 import { reducer } from './githubapp/reducers/reducer';
 
 import LoginScene from './githubapp/scenes/login-scene';
+import HomeScene from './githubapp/scenes/home-scene';
 
 const store = createStore(reducer);
 
 const defaultRoute = {
   title: 'Sence 1',
-  component: LoginScene
+  component: HomeScene
 }
 
 export default class githubrepo extends Component {
