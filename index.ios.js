@@ -23,7 +23,7 @@ const store = createStore(reducer);
 
 const defaultRoute = {
   title: 'Sence 1',
-  component: HomeScene
+  component: LoginScene
 }
 
 export default class githubrepo extends Component {
