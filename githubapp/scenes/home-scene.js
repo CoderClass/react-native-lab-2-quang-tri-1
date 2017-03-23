@@ -45,6 +45,8 @@ class HomeScene extends Component {
   }
 
   componentWillMount() {
+    alert("Am in home screen, login FB successfully with: " + this.props.facebookResult.name);
+
     fetch('https://api.github.com/search/repositories?q=topic:ruby+topic:rails')
       .then(response => response.json())
       .then(responseJson => {
