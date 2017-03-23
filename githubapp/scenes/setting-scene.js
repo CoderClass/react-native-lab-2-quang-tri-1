@@ -14,8 +14,8 @@ class SettingScene extends Component {
   render() {
     return (
       <View>
-        <Text>
-          Setting 1
+        <Text style={{marginTop: 100}}>
+          Setting 1: { this.state.setting1.toString() }
         </Text>
         <Switch
           onValueChange={(value) => this.setState({setting1: value})}
