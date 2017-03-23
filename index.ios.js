@@ -12,8 +12,13 @@ import {
   View,
   Navigator
 } from 'react-native';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { reducer } from './githubapp/reducers/reducer';
 
 import LoginScene from './githubapp/scenes/login-scene';
+
+const store = createStore(reducer);
 
 const defaultRoute = {
   title: 'Sence 1',
@@ -23,10 +28,12 @@ const defaultRoute = {
 export default class githubrepo extends Component {
   render() {
     return (
-      <Navigator
-        initialRoute={ defaultRoute }
-        renderScene={ this._renderScene }
-      />
+      <Provider store={store}>
+        <Navigator
+          initialRoute={ defaultRoute }
+          renderScene={ this._renderScene }
+        />
+      </Provider>
     );
   }
 
